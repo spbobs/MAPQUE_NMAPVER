@@ -1,0 +1,135 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId "com.bobs.mapque.nmapver"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "NATIVE_AD_ID", NATIVE_AD_ID
+        buildConfigField "String", "NAVER_API_URL", "\"https://naveropenapi.apigw.ntruss.com\""
+        buildConfigField "String", "NAVER_CLIENT_ID", String.format("\"%s\"", NAVER_CLIENT_ID)
+        buildConfigField "String", "NAVER_CLIENT_SECRET", String.format("\"%s\"", NAVER_CLIENT_SECRET)
+
+        manifestPlaceholders = [naverClientId: NAVER_CLIENT_ID, admobAppId: ADMOB_APP_ID]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "String", "NATIVE_AD_ID", NATIVE_AD_ID_TEST
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "Mapque_${variant.versionName}_GMAP.apk"
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    implementation project(":baselibrary")
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.stdlib
+    implementation deps.coroutines.core
+    implementation deps.coroutines.android
+
+    implementation deps.app_compat
+    implementation deps.core_ktx
+
+    implementation deps.koin.core
+    implementation deps.koin.core_ext
+    implementation deps.koin.android
+    implementation deps.koin.android_vm
+
+    implementation deps.constraint_layout
+
+    implementation deps.lifecycle.extensions
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt deps.lifecycle.compiler
+
+    implementation deps.rxjava2
+    implementation deps.rx_android
+
+    implementation deps.tedpermission
+
+    implementation deps.logger
+
+    implementation deps.flat_button
+
+    implementation deps.gson
+
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.rxjava2
+    implementation deps.okhttp_logging_interceptor
+
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
+    implementation deps.joda_time
+
+    implementation deps.search_dialog
+
+    implementation deps.circular_progress_bar
+
+    // 네이버 지도 SDK
+    implementation 'com.naver.maps:map-sdk:3.8.0'
+
+    // https://github.com/fstech/android-floating-action-button
+    implementation "com.getbase:floatingactionbutton:1.10.1"
+
+    // https://github.com/afollestad/material-dialogs
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+
+    // https://github.com/amitshekhariitbhu/Android-Debug-Database
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+    // https://square.github.io/leakcanary/
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
