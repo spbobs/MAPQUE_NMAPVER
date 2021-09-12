@@ -5,7 +5,7 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -22,11 +22,11 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
 
         // 네이버 지도 저장소
         maven {
-            url 'https://navercorp.bintray.com/maps'
+            url 'https://naver.jfrog.io/artifactory/maven/'
         }
 
         maven { url "https://jitpack.io" }

@@ -67,10 +67,7 @@ dependencies {
     implementation deps.app_compat
     implementation deps.core_ktx
 
-    implementation deps.koin.core
-    implementation deps.koin.core_ext
     implementation deps.koin.android
-    implementation deps.koin.android_vm
 
     implementation deps.constraint_layout
 
@@ -104,7 +101,7 @@ dependencies {
     implementation deps.circular_progress_bar
 
     // 네이버 지도 SDK
-    implementation 'com.naver.maps:map-sdk:3.8.0'
+    implementation 'com.naver.maps:map-sdk:3.12.0'
 
     // https://github.com/fstech/android-floating-action-button
     implementation "com.getbase:floatingactionbutton:1.10.1"
@@ -113,7 +110,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
 
     // https://github.com/amitshekhariitbhu/Android-Debug-Database
-    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+//    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
     // https://square.github.io/leakcanary/
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
@@ -124,7 +121,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:19.1.0'
 
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
 
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'

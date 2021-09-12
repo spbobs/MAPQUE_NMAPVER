@@ -31,7 +31,7 @@ import ir.mirrajabi.searchdialog.core.SearchResultListener
 import kotlinx.android.synthetic.main.fragment_naver_map.*
 import org.joda.time.DateTime
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.util.ArrayList
 
